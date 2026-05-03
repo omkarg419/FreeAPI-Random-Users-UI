@@ -1,16 +1,64 @@
-# React + Vite
+# FreeAPI Random Users UI
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Vite interface for browsing random users from the FreeAPI public endpoint. The app loads user data, renders profile-style cards, and shows a highlighted detail view for the selected user.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Fetches users from the FreeAPI random users endpoint.
+- Shows a responsive gallery of user cards.
+- Includes a selected profile panel with key details.
+- Supports client-side search by name, email, city, or country.
+- Handles loading and error states.
 
-## React Compiler
+## API Source
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+The app uses:
 
-## Expanding the ESLint configuration
+`https://api.freeapi.app/api/v1/public/randomusers`
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The response shape used by the UI is:
+
+- `payload.data.data`: array of user objects
+- `payload.data.currentPage`: current page number
+- `payload.data.totalPages`: total number of pages
+- `payload.data.totalItems`: total number of users available
+- `payload.data.currentPageItems`: number of users returned for the current page
+
+Each user includes fields such as:
+
+- `name.first`, `name.last`, `name.title`
+- `email`
+- `phone`
+- `gender`
+- `location.city`, `location.country`
+- `picture.medium`, `picture.large`
+- `login.username`
+- `dob.age`
+
+## Getting Started
+
+Install dependencies and start the development server:
+
+```bash
+npm install
+npm run dev
+```
+
+Open the local Vite URL shown in the terminal.
+
+## Available Scripts
+
+- `npm run dev` - start the Vite development server.
+- `npm run build` - create a production build.
+- `npm run preview` - preview the production build locally.
+- `npm run lint` - run ESLint across the project.
+
+## Project Structure
+
+```text
+src/
+	App.jsx
+	main.jsx
+	index.css
+```
+
